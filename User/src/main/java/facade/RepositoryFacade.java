@@ -1,23 +1,16 @@
 package facade;
 
+import repository.UserDAO;
 
-// Facade to interact with UserDAO
-// Gets request from UserService layer
 public class RepositoryFacade {
 
+    private final UserDAO userDAO;
 
-    public String fetchUserById(int id) {
-        // Simulate fetching user from database
-        return "User with ID: " + id;
-    }
-
-
-    public static RepositoryFacade getInstance() {
-        return new RepositoryFacade();
-    }
     public RepositoryFacade() {
-
+        this.userDAO = new UserDAO();
     }
 
-
+    public boolean authenticate(String username, String password) {
+        return userDAO.checkCredentials(username, password);
+    }
 }

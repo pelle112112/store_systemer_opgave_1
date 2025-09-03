@@ -2,26 +2,16 @@ package service;
 
 import facade.RepositoryFacade;
 
+
 public class UserService {
 
-    // Singleton Service layer
+    private final RepositoryFacade repoFacade;
 
-    private static UserService instance;
-    private UserService() {}
-    public static UserService getInstance() {
-        if (instance == null) {
-            instance = new UserService();
-        }
-        return instance;
+    public UserService() {
+        this.repoFacade = new RepositoryFacade();
     }
 
-    // Talks to RepositoryFacade layer
-
-    RepositoryFacade repositoryFacade = RepositoryFacade.getInstance();
-    public String getUserById(int id) {
-        return repositoryFacade.fetchUserById(id);
+    public boolean authenticate(String username, String password) {
+        return repoFacade.authenticate(username, password);
     }
-
-
-
 }
