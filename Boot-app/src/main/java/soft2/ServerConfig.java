@@ -1,6 +1,5 @@
-package Config;
+package soft2;
 
-import Routing.Routes;
 import io.javalin.Javalin;
 import io.javalin.config.JavalinConfig;
 import io.javalin.plugin.bundled.RouteOverviewPlugin;

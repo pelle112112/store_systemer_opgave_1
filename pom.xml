@@ -7,6 +7,14 @@
     <groupId>soft2</groupId>
     <artifactId>OLA1_SS</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>User</module>
+        <module>Social</module>
+        <module>Marketing</module>
+        <module>Media</module>
+        <module>Boot-app</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>19</maven.compiler.source>
