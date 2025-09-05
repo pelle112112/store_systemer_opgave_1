@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>User Module UI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 640px; margin: 40px auto; padding: 0 16px; }
+        .card { border:1px solid #ddd; border-radius:12px; padding:24px; box-shadow: 0 2px 6px rgba(0,0,0,.06); }
+        input, button { padding: 10px; border-radius: 8px; border: 1px solid #ccc; margin-top: 8px; width: 100%; }
+        button { border: 0; cursor: pointer; }
+        .ok { color: #0a0 } .bad { color: #a00 }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h2>User Login (User module)</h2>
+    <p>Try: <code>alice/password123</code>, <code>bob/secret</code>, <code>charlie/qwerty</code></p>
+    <div id="root"></div>
+</div>
+
+<script>
+    const e = React.createElement;
+    function App(){
+        const [u,setU] = React.useState("alice");
+        const [p,setP] = React.useState("password123");
+        const [msg,setMsg] = React.useState(""); const [cls,setCls] = React.useState("");
+
+        async function login(){
+            // absolute path to your API (contextPath is /api)
+            const res = await fetch("/api/user/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username: u, password: p })
+            });
+            const text = await res.text();
+            setMsg(text); setCls(res.ok ? "ok" : "bad");
+        }
+
+        return e('div', null, [
+            e('input', { key:1, value:u, onChange:e=>setU(e.target.value), placeholder:'username' }),
+            e('input', { key:2, type:'password', value:p, onChange:e=>setP(e.target.value), placeholder:'password' }),
+            e('button', { key:3, onClick:login }, 'Login'),
+            e('pre', { key:4, className:cls, style:{whiteSpace:'pre-wrap'} }, msg)
+        ]);
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(e(App));
+</script>
+</body>
+</html>

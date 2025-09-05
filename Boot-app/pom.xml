@@ -27,6 +27,15 @@
                     <release>19</release>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <mainClass>soft2.bootapp.Main</mainClass>
+                    <classpathScope>runtime</classpathScope>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

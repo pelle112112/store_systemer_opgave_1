@@ -28,22 +28,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>false</filtering>
-            </resource>
-
-            <!-- treat src/main/frontend as static resources -->
-            <resource>
-                <directory>src/main/frontend</directory>
-                <targetPath>public/user</targetPath>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-        </resources>
     </build>
 
 

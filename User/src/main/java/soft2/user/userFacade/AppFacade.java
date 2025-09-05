@@ -14,7 +14,8 @@ public class AppFacade {
     /**
      * Returns true if login succeeds, false otherwise.
      */
-    public boolean login(UserDTO dto) {
+    public boolean login(String username, String password) {
+        UserDTO dto = new UserDTO(username, password);
         return controller.login(dto);
     }
 }

@@ -2,6 +2,7 @@ package soft2.bootapp;
 
 import io.javalin.Javalin;
 import io.javalin.config.JavalinConfig;
+import io.javalin.http.staticfiles.Location;
 import io.javalin.plugin.bundled.RouteOverviewPlugin;
 
 public class ServerConfig {
@@ -17,5 +18,10 @@ public class ServerConfig {
         config.routing.contextPath = "/api";
         config.http.defaultContentType = "application/json";
         config.plugins.register(new RouteOverviewPlugin("/"));
+        config.staticFiles.add(s -> {
+            s.directory = "public/user";
+            s.hostedPath = "/user";
+            s.location = Location.CLASSPATH;
+        });;
     }
 }
